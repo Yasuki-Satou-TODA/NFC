@@ -1,0 +1,598 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5B7A22AC2659DBE00041201B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22AB2659DBE00041201B /* AppDelegate.swift */; };
+		5B7A22AE2659DBE00041201B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22AD2659DBE00041201B /* SceneDelegate.swift */; };
+		5B7A22B02659DBE00041201B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22AF2659DBE00041201B /* ViewController.swift */; };
+		5B7A22B32659DBE00041201B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A22B12659DBE00041201B /* Main.storyboard */; };
+		5B7A22B52659DBE30041201B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A22B42659DBE30041201B /* Assets.xcassets */; };
+		5B7A22B82659DBE30041201B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */; };
+		5B7A22C32659DBE40041201B /* toda_nfc_readerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22C22659DBE40041201B /* toda_nfc_readerTests.swift */; };
+		5B7A22CE2659DBE40041201B /* toda_nfc_readerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22CD2659DBE40041201B /* toda_nfc_readerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5B7A22BF2659DBE40041201B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B7A22A02659DBE00041201B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B7A22A72659DBE00041201B;
+			remoteInfo = "toda-nfc-reader";
+		};
+		5B7A22CA2659DBE40041201B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B7A22A02659DBE00041201B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B7A22A72659DBE00041201B;
+			remoteInfo = "toda-nfc-reader";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5B7A22A82659DBE00041201B /* toda-nfc-reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "toda-nfc-reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B7A22AB2659DBE00041201B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5B7A22AD2659DBE00041201B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		5B7A22AF2659DBE00041201B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B7A22B22659DBE00041201B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5B7A22B42659DBE30041201B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5B7A22B72659DBE30041201B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5B7A22B92659DBE30041201B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B7A22BE2659DBE40041201B /* toda-nfc-readerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "toda-nfc-readerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B7A22C22659DBE40041201B /* toda_nfc_readerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toda_nfc_readerTests.swift; sourceTree = "<group>"; };
+		5B7A22C42659DBE40041201B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B7A22C92659DBE40041201B /* toda-nfc-readerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "toda-nfc-readerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B7A22CD2659DBE40041201B /* toda_nfc_readerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toda_nfc_readerUITests.swift; sourceTree = "<group>"; };
+		5B7A22CF2659DBE40041201B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5B7A22A52659DBE00041201B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B7A22BB2659DBE40041201B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B7A22C62659DBE40041201B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5B7A229F2659DBE00041201B = {
+			isa = PBXGroup;
+			children = (
+				5B7A22AA2659DBE00041201B /* toda-nfc-reader */,
+				5B7A22C12659DBE40041201B /* toda-nfc-readerTests */,
+				5B7A22CC2659DBE40041201B /* toda-nfc-readerUITests */,
+				5B7A22A92659DBE00041201B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5B7A22A92659DBE00041201B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B7A22A82659DBE00041201B /* toda-nfc-reader.app */,
+				5B7A22BE2659DBE40041201B /* toda-nfc-readerTests.xctest */,
+				5B7A22C92659DBE40041201B /* toda-nfc-readerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5B7A22AA2659DBE00041201B /* toda-nfc-reader */ = {
+			isa = PBXGroup;
+			children = (
+				5B7A22AB2659DBE00041201B /* AppDelegate.swift */,
+				5B7A22AD2659DBE00041201B /* SceneDelegate.swift */,
+				5B7A22AF2659DBE00041201B /* ViewController.swift */,
+				5B7A22B12659DBE00041201B /* Main.storyboard */,
+				5B7A22B42659DBE30041201B /* Assets.xcassets */,
+				5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */,
+				5B7A22B92659DBE30041201B /* Info.plist */,
+			);
+			path = "toda-nfc-reader";
+			sourceTree = "<group>";
+		};
+		5B7A22C12659DBE40041201B /* toda-nfc-readerTests */ = {
+			isa = PBXGroup;
+			children = (
+				5B7A22C22659DBE40041201B /* toda_nfc_readerTests.swift */,
+				5B7A22C42659DBE40041201B /* Info.plist */,
+			);
+			path = "toda-nfc-readerTests";
+			sourceTree = "<group>";
+		};
+		5B7A22CC2659DBE40041201B /* toda-nfc-readerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5B7A22CD2659DBE40041201B /* toda_nfc_readerUITests.swift */,
+				5B7A22CF2659DBE40041201B /* Info.plist */,
+			);
+			path = "toda-nfc-readerUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5B7A22A72659DBE00041201B /* toda-nfc-reader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B7A22D22659DBE40041201B /* Build configuration list for PBXNativeTarget "toda-nfc-reader" */;
+			buildPhases = (
+				5B7A22A42659DBE00041201B /* Sources */,
+				5B7A22A52659DBE00041201B /* Frameworks */,
+				5B7A22A62659DBE00041201B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "toda-nfc-reader";
+			productName = "toda-nfc-reader";
+			productReference = 5B7A22A82659DBE00041201B /* toda-nfc-reader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5B7A22BD2659DBE40041201B /* toda-nfc-readerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B7A22D52659DBE40041201B /* Build configuration list for PBXNativeTarget "toda-nfc-readerTests" */;
+			buildPhases = (
+				5B7A22BA2659DBE40041201B /* Sources */,
+				5B7A22BB2659DBE40041201B /* Frameworks */,
+				5B7A22BC2659DBE40041201B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B7A22C02659DBE40041201B /* PBXTargetDependency */,
+			);
+			name = "toda-nfc-readerTests";
+			productName = "toda-nfc-readerTests";
+			productReference = 5B7A22BE2659DBE40041201B /* toda-nfc-readerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5B7A22C82659DBE40041201B /* toda-nfc-readerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B7A22D82659DBE40041201B /* Build configuration list for PBXNativeTarget "toda-nfc-readerUITests" */;
+			buildPhases = (
+				5B7A22C52659DBE40041201B /* Sources */,
+				5B7A22C62659DBE40041201B /* Frameworks */,
+				5B7A22C72659DBE40041201B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B7A22CB2659DBE40041201B /* PBXTargetDependency */,
+			);
+			name = "toda-nfc-readerUITests";
+			productName = "toda-nfc-readerUITests";
+			productReference = 5B7A22C92659DBE40041201B /* toda-nfc-readerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5B7A22A02659DBE00041201B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					5B7A22A72659DBE00041201B = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					5B7A22BD2659DBE40041201B = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 5B7A22A72659DBE00041201B;
+					};
+					5B7A22C82659DBE40041201B = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 5B7A22A72659DBE00041201B;
+					};
+				};
+			};
+			buildConfigurationList = 5B7A22A32659DBE00041201B /* Build configuration list for PBXProject "toda-nfc-reader" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5B7A229F2659DBE00041201B;
+			productRefGroup = 5B7A22A92659DBE00041201B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5B7A22A72659DBE00041201B /* toda-nfc-reader */,
+				5B7A22BD2659DBE40041201B /* toda-nfc-readerTests */,
+				5B7A22C82659DBE40041201B /* toda-nfc-readerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5B7A22A62659DBE00041201B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B7A22B82659DBE30041201B /* LaunchScreen.storyboard in Resources */,
+				5B7A22B52659DBE30041201B /* Assets.xcassets in Resources */,
+				5B7A22B32659DBE00041201B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B7A22BC2659DBE40041201B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B7A22C72659DBE40041201B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5B7A22A42659DBE00041201B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B7A22B02659DBE00041201B /* ViewController.swift in Sources */,
+				5B7A22AC2659DBE00041201B /* AppDelegate.swift in Sources */,
+				5B7A22AE2659DBE00041201B /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B7A22BA2659DBE40041201B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B7A22C32659DBE40041201B /* toda_nfc_readerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B7A22C52659DBE40041201B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B7A22CE2659DBE40041201B /* toda_nfc_readerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B7A22C02659DBE40041201B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B7A22A72659DBE00041201B /* toda-nfc-reader */;
+			targetProxy = 5B7A22BF2659DBE40041201B /* PBXContainerItemProxy */;
+		};
+		5B7A22CB2659DBE40041201B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B7A22A72659DBE00041201B /* toda-nfc-reader */;
+			targetProxy = 5B7A22CA2659DBE40041201B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5B7A22B12659DBE00041201B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B7A22B22659DBE00041201B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B7A22B72659DBE30041201B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5B7A22D02659DBE40041201B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5B7A22D12659DBE40041201B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5B7A22D32659DBE40041201B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B46YA9GNL5;
+				INFOPLIST_FILE = "toda-nfc-reader/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toda.toda-nfc-reader";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5B7A22D42659DBE40041201B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B46YA9GNL5;
+				INFOPLIST_FILE = "toda-nfc-reader/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toda.toda-nfc-reader";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5B7A22D62659DBE40041201B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B46YA9GNL5;
+				INFOPLIST_FILE = "toda-nfc-readerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toda.toda-nfc-readerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/toda-nfc-reader.app/toda-nfc-reader";
+			};
+			name = Debug;
+		};
+		5B7A22D72659DBE40041201B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B46YA9GNL5;
+				INFOPLIST_FILE = "toda-nfc-readerTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toda.toda-nfc-readerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/toda-nfc-reader.app/toda-nfc-reader";
+			};
+			name = Release;
+		};
+		5B7A22D92659DBE40041201B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B46YA9GNL5;
+				INFOPLIST_FILE = "toda-nfc-readerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toda.toda-nfc-readerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "toda-nfc-reader";
+			};
+			name = Debug;
+		};
+		5B7A22DA2659DBE40041201B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B46YA9GNL5;
+				INFOPLIST_FILE = "toda-nfc-readerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.toda.toda-nfc-readerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "toda-nfc-reader";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5B7A22A32659DBE00041201B /* Build configuration list for PBXProject "toda-nfc-reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B7A22D02659DBE40041201B /* Debug */,
+				5B7A22D12659DBE40041201B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B7A22D22659DBE40041201B /* Build configuration list for PBXNativeTarget "toda-nfc-reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B7A22D32659DBE40041201B /* Debug */,
+				5B7A22D42659DBE40041201B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B7A22D52659DBE40041201B /* Build configuration list for PBXNativeTarget "toda-nfc-readerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B7A22D62659DBE40041201B /* Debug */,
+				5B7A22D72659DBE40041201B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B7A22D82659DBE40041201B /* Build configuration list for PBXNativeTarget "toda-nfc-readerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B7A22D92659DBE40041201B /* Debug */,
+				5B7A22DA2659DBE40041201B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5B7A22A02659DBE00041201B /* Project object */;
+}
