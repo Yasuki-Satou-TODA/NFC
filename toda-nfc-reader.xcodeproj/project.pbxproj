@@ -15,6 +15,7 @@
 		5B7A22B82659DBE30041201B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */; };
 		5B7A22C32659DBE40041201B /* toda_nfc_readerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22C22659DBE40041201B /* toda_nfc_readerTests.swift */; };
 		5B7A22CE2659DBE40041201B /* toda_nfc_readerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22CD2659DBE40041201B /* toda_nfc_readerUITests.swift */; };
+		661C4E872664D20E001B7DE5 /* NFCReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C4E862664D20E001B7DE5 /* NFCReader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		5B7A22CD2659DBE40041201B /* toda_nfc_readerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toda_nfc_readerUITests.swift; sourceTree = "<group>"; };
 		5B7A22CF2659DBE40041201B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6606F78A265BA9AE00B7D670 /* toda-nfc-reader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "toda-nfc-reader.entitlements"; sourceTree = "<group>"; };
+		661C4E862664D20E001B7DE5 /* NFCReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCReader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				5B7A22B42659DBE30041201B /* Assets.xcassets */,
 				5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */,
 				5B7A22B92659DBE30041201B /* Info.plist */,
+				661C4E862664D20E001B7DE5 /* NFCReader.swift */,
 			);
 			path = "toda-nfc-reader";
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661C4E872664D20E001B7DE5 /* NFCReader.swift in Sources */,
 				5B7A22B02659DBE00041201B /* ViewController.swift in Sources */,
 				5B7A22AC2659DBE00041201B /* AppDelegate.swift in Sources */,
 				5B7A22AE2659DBE00041201B /* SceneDelegate.swift in Sources */,

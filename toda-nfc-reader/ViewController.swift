@@ -50,7 +50,7 @@ class ViewController: UIViewController {
             Swift.print("この端末ではNFCが使えません。")
             return
         }
-        session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
+        session = NFCNDEFReaderSession(delegate: NFCReader().self, queue: nil, invalidateAfterFirstRead: false)
         session?.alertMessage = "NFCタグをiPhone上部に近づけてください．"
         session?.begin()
     }
@@ -97,78 +97,6 @@ class ViewController: UIViewController {
         }
         stopSession(alert: "[" + results.joined(separator: ", ") + "]")
         return true
-    }
-
-}
-
-extension ViewController: NFCNDEFReaderSessionDelegate {
-
-    // 読み取り状態になったとき
-    func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
-    }
-
-    // 読み取りエラーが起こった時呼ばれる。ユーザーがキャンセルボタンを押すか、タイムアウトしたときに呼ばれる。
-    func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        Swift.print(error.localizedDescription)
-    }
-
-    // 読み取りに成功したら呼ばれる。
-    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-    }
-
-    func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {
-        if tags.count > 1 {
-            session.alertMessage = "読み込ませるNFCタグは1枚にしてください．"
-            tagRemovalDetect(tags.first!)
-            return
-        }
-        
-        guard let tag = tags.first else { return }
-        session.connect(to: tag) { (error) in
-            if error != nil {
-                session.restartPolling()
-                return
-            }
-        }
-
-        tag.queryNDEFStatus { (status, capacity, error) in
-            if status == .notSupported {
-                self.stopSession(error: "このNFCタグは対応していません。")
-                return
-            }
-            if self.state == .write {
-                if status == .readOnly {
-                    self.stopSession(error: "このNFCタグには書き込めません。")
-                    return
-                }
-                if let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: self.text, locale: Locale(identifier: "en")) {
-                    
-                    let urlPayload = NFCNDEFPayload.wellKnownTypeURIPayload(string: "toda-nfc-app://")!
-                    self.message = NFCNDEFMessage(records: [payload, urlPayload])
-                    if self.message!.length > capacity {
-                        self.stopSession(error: "容量オーバーです。！\n容量は\(capacity)bytesです。")
-                        return
-                    }
-                    tag.writeNDEF(self.message!) { (error) in
-                        if error != nil {
-                            self.stopSession(error: error!.localizedDescription)
-                        } else {
-                            self.stopSession(alert: "書き込みに成功しました。")
-                        }
-                    }
-                }
-            } else if self.state == .read {
-                tag.readNDEF { (message, error) in
-                    if error != nil || message == nil {
-                        self.stopSession(error: error!.localizedDescription)
-                        return
-                    }
-                    if !self.updateMessage(message!) {
-                        self.stopSession(error: "このNFCタグは対応していません。")
-                    }
-                }
-            }
-        }
     }
 
 }
