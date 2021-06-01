@@ -50,7 +50,7 @@ class ViewController: UIViewController {
             Swift.print("この端末ではNFCが使えません。")
             return
         }
-        session = NFCNDEFReaderSession(delegate: NFCReader().self, queue: nil, invalidateAfterFirstRead: false)
+        session = NFCNDEFReaderSession(delegate: NFCReader(viewController: self), queue: nil, invalidateAfterFirstRead: false)
         session?.alertMessage = "NFCタグをiPhone上部に近づけてください．"
         session?.begin()
     }
@@ -98,5 +98,4 @@ class ViewController: UIViewController {
         stopSession(alert: "[" + results.joined(separator: ", ") + "]")
         return true
     }
-
 }

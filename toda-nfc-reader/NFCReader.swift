@@ -12,8 +12,12 @@ import UIKit
 final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
 
     var message: NFCNDEFMessage?
-    let viewController = ViewController()
-    
+    var viewController: ViewController!
+
+    init(viewController: ViewController) {
+        self.viewController = viewController
+    }
+
     // 読み取り状態になったとき
     func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
     }
@@ -52,22 +56,7 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
                     self.viewController.stopSession(error: "このNFCタグには書き込めません。")
                     return
                 }
-                if let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: self.viewController.text, locale: Locale(identifier: "en")) {
-
-                    let urlPayload = NFCNDEFPayload.wellKnownTypeURIPayload(string: "toda-nfc-app://")!
-                    self.message = NFCNDEFMessage(records: [payload, urlPayload])
-                    if self.message!.length > capacity {
-                        self.viewController.stopSession(error: "容量オーバーです。！\n容量は\(capacity)bytesです。")
-                        return
-                    }
-                    tag.writeNDEF(self.message!) { (error) in
-                        if error != nil {
-                            self.viewController.stopSession(error: error!.localizedDescription)
-                        } else {
-                            self.viewController.stopSession(alert: "書き込みに成功しました。")
-                        }
-                    }
-                }
+                self.makePayload(capacity: capacity, tag: tag)
             } else if self.viewController.state == .read {
                 tag.readNDEF { (message, error) in
                     if error != nil || message == nil {
@@ -77,6 +66,25 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
                     if !self.viewController.updateMessage(message!) {
                         self.viewController.stopSession(error: "このNFCタグは対応していません。")
                     }
+                }
+            }
+        }
+    }
+
+    func makePayload(capacity: Int, tag: NFCNDEFTag) {
+        if let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: self.viewController.text, locale: Locale(identifier: "en")) {
+
+            let urlPayload = NFCNDEFPayload.wellKnownTypeURIPayload(string: "toda-nfc-app://")!
+            self.message = NFCNDEFMessage(records: [payload, urlPayload])
+            if self.message!.length > capacity {
+                self.viewController.stopSession(error: "容量オーバーです。！\n容量は\(capacity)bytesです。")
+                return
+            }
+            tag.writeNDEF(self.message!) { (error) in
+                if error != nil {
+                    self.viewController.stopSession(error: error!.localizedDescription)
+                } else {
+                    self.viewController.stopSession(alert: "書き込みに成功しました。")
                 }
             }
         }
