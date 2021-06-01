@@ -20,13 +20,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var writeBtn: UIButton!
     @IBOutlet weak var readBtn: UIButton!
 
-    var session: NFCNDEFReaderSession?
     var message: NFCNDEFMessage?
     var state: State = .standBy
     var text: String = ""
+    var nfcReader = NFCReader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        nfcReader.viewController = self
     }
 
     @IBAction func tapScreen(_ sender: Any) {
@@ -37,44 +38,11 @@ class ViewController: UIViewController {
         textField.resignFirstResponder()
         if textField.text == nil || textField.text!.isEmpty { return }
         text = textField.text!
-        startSession(state: .write)
+        nfcReader.startSession(state: .write)
     }
 
     @IBAction func read(_ sender: Any) {
-        startSession(state: .read)
-    }
-
-    func startSession(state: State) {
-        self.state = state
-        guard NFCNDEFReaderSession.readingAvailable else {
-            Swift.print("この端末ではNFCが使えません。")
-            return
-        }
-        session = NFCNDEFReaderSession(delegate: NFCReader(viewController: self), queue: nil, invalidateAfterFirstRead: false)
-        session?.alertMessage = "NFCタグをiPhone上部に近づけてください．"
-        session?.begin()
-    }
-
-    func stopSession(alert: String = "", error: String = "") {
-        session?.alertMessage = alert
-        if error.isEmpty {
-            session?.invalidate()
-        } else {
-            session?.invalidate(errorMessage: error)
-        }
-        self.state = .standBy
-    }
-
-    func tagRemovalDetect(_ tag: NFCNDEFTag) {
-        session?.connect(to: tag) { (error: Error?) in
-            if error != nil || !tag.isAvailable {
-                self.session?.restartPolling()
-                return
-            }
-            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + .milliseconds(500), execute: {
-                self.tagRemovalDetect(tag)
-            })
-        }
+        nfcReader.startSession(state: .read)
     }
 
     func updateMessage(_ message: NFCNDEFMessage) -> Bool {
@@ -95,7 +63,7 @@ class ViewController: UIViewController {
                 }
             }
         }
-        stopSession(alert: "[" + results.joined(separator: ", ") + "]")
+        nfcReader.stopSession(alert: "[" + results.joined(separator: ", ") + "]")
         return true
     }
 }

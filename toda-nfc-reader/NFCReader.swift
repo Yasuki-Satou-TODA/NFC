@@ -14,8 +14,41 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
     var message: NFCNDEFMessage?
     var viewController: ViewController!
 
-    init(viewController: ViewController) {
-        self.viewController = viewController
+    private lazy var session: NFCNDEFReaderSession = {
+        return NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
+    }()
+
+    func startSession(state: State) {
+        viewController.state = state
+        guard NFCNDEFReaderSession.readingAvailable else {
+            Swift.print("この端末ではNFCが使えません。")
+            return
+        }
+        session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
+        session.alertMessage = "NFCタグをiPhone上部に近づけてください．"
+        session.begin()
+    }
+
+    func stopSession(alert: String = "", error: String = "") {
+        session.alertMessage = alert
+        if error.isEmpty {
+            session.invalidate()
+        } else {
+            session.invalidate(errorMessage: error)
+        }
+        viewController.state = .standBy
+    }
+
+    func tagRemovalDetect(_ tag: NFCNDEFTag) {
+        session.connect(to: tag) { (error: Error?) in
+            if error != nil || !tag.isAvailable {
+                self.session.restartPolling()
+                return
+            }
+            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + .milliseconds(500), execute: {
+                self.tagRemovalDetect(tag)
+            })
+        }
     }
 
     // 読み取り状態になったとき
@@ -34,7 +67,7 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
     func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {
         if tags.count > 1 {
             session.alertMessage = "読み込ませるNFCタグは1枚にしてください．"
-            viewController.tagRemovalDetect(tags.first!)
+            self.tagRemovalDetect(tags.first!)
             return
         }
 
@@ -48,23 +81,23 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
 
         tag.queryNDEFStatus { (status, capacity, error) in
             if status == .notSupported {
-                self.viewController.stopSession(error: "このNFCタグは対応していません。")
+                self.stopSession(error: "このNFCタグは対応していません。")
                 return
             }
             if self.viewController.state == .write {
                 if status == .readOnly {
-                    self.viewController.stopSession(error: "このNFCタグには書き込めません。")
+                    self.stopSession(error: "このNFCタグには書き込めません。")
                     return
                 }
                 self.makePayload(capacity: capacity, tag: tag)
             } else if self.viewController.state == .read {
                 tag.readNDEF { (message, error) in
                     if error != nil || message == nil {
-                        self.viewController.stopSession(error: error!.localizedDescription)
+                        self.stopSession(error: error!.localizedDescription)
                         return
                     }
                     if !self.viewController.updateMessage(message!) {
-                        self.viewController.stopSession(error: "このNFCタグは対応していません。")
+                        self.stopSession(error: "このNFCタグは対応していません。")
                     }
                 }
             }
@@ -77,14 +110,14 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
             let urlPayload = NFCNDEFPayload.wellKnownTypeURIPayload(string: "toda-nfc-app://")!
             self.message = NFCNDEFMessage(records: [payload, urlPayload])
             if self.message!.length > capacity {
-                self.viewController.stopSession(error: "容量オーバーです。！\n容量は\(capacity)bytesです。")
+                self.stopSession(error: "容量オーバーです。！\n容量は\(capacity)bytesです。")
                 return
             }
             tag.writeNDEF(self.message!) { (error) in
                 if error != nil {
-                    self.viewController.stopSession(error: error!.localizedDescription)
+                    self.stopSession(error: error!.localizedDescription)
                 } else {
-                    self.viewController.stopSession(alert: "書き込みに成功しました。")
+                    self.stopSession(alert: "書き込みに成功しました。")
                 }
             }
         }
