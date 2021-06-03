@@ -11,8 +11,8 @@ import UIKit
 
 final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
 
-    var message: NFCNDEFMessage?
     var viewController: ViewController!
+    private var message: NFCNDEFMessage?
     private var text: String = ""
 
     private lazy var session: NFCNDEFReaderSession = {

@@ -14,15 +14,15 @@ enum State {
     case write
 }
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var writeBtn: UIButton!
     @IBOutlet weak var readBtn: UIButton!
 
-    var message: NFCNDEFMessage?
     var state: State = .standBy
-    var nfcReader = NFCReader()
+
+    private let nfcReader = NFCReader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
