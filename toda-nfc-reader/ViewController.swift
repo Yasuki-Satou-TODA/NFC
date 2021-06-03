@@ -44,26 +44,4 @@ class ViewController: UIViewController {
     @IBAction func read(_ sender: Any) {
         nfcReader.startSession(state: .read)
     }
-
-    func updateMessage(_ message: NFCNDEFMessage) -> Bool {
-        if message.records.isEmpty { return false }
-        var results = [String]()
-        for record in message.records {
-            if let type = String(data: record.type, encoding: .utf8) {
-                if type == "T" { // データ形式がテキストならば
-                    let res = record.wellKnownTypeTextPayload()
-                    if let text = res.0 {
-                        results.append("text: \(text)")
-                    }
-                } else if type == "U" { // データ形式がURLならば
-                    let res = record.wellKnownTypeURIPayload()
-                    if let url = res {
-                        results.append("url: \(url)")
-                    }
-                }
-            }
-        }
-        nfcReader.stopSession(alert: "[" + results.joined(separator: ", ") + "]")
-        return true
-    }
 }

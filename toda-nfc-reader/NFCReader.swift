@@ -51,6 +51,28 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
         }
     }
 
+    func updateMessage(_ message: NFCNDEFMessage) -> Bool {
+        if message.records.isEmpty { return false }
+        var results = [String]()
+        for record in message.records {
+            if let type = String(data: record.type, encoding: .utf8) {
+                if type == "T" { // データ形式がテキストならば
+                    let res = record.wellKnownTypeTextPayload()
+                    if let text = res.0 {
+                        results.append("text: \(text)")
+                    }
+                } else if type == "U" { // データ形式がURLならば
+                    let res = record.wellKnownTypeURIPayload()
+                    if let url = res {
+                        results.append("url: \(url)")
+                    }
+                }
+            }
+        }
+        stopSession(alert: "[" + results.joined(separator: ", ") + "]")
+        return true
+    }
+
     // 読み取り状態になったとき
     func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
     }
@@ -96,7 +118,7 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
                         self.stopSession(error: error!.localizedDescription)
                         return
                     }
-                    if !self.viewController.updateMessage(message!) {
+                    if self.updateMessage(message!) {
                         self.stopSession(error: "このNFCタグは対応していません。")
                     }
                 }
