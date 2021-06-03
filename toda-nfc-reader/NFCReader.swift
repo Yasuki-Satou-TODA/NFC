@@ -13,6 +13,7 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
 
     var message: NFCNDEFMessage?
     var viewController: ViewController!
+    private var text: String = ""
 
     private lazy var session: NFCNDEFReaderSession = {
         return NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
@@ -73,6 +74,11 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
         return true
     }
 
+    func setInputNFCInfo(_ text: String?) {
+        setText(text: text)
+        startSession(state: .write)
+    }
+
     // 読み取り状態になったとき
     func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
     }
@@ -127,7 +133,7 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
     }
 
     func makePayload(capacity: Int, tag: NFCNDEFTag) {
-        if let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: self.viewController.text, locale: Locale(identifier: "en")) {
+        if let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: text, locale: Locale(identifier: "en")) {
 
             let urlPayload = NFCNDEFPayload.wellKnownTypeURIPayload(string: "toda-nfc-app://")!
             self.message = NFCNDEFMessage(records: [payload, urlPayload])
@@ -143,5 +149,11 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
                 }
             }
         }
+    }
+
+    func setText(text: String?) {
+        guard let text = text else { return }
+        if text.isEmpty { return }
+        self.text = text
     }
 }
