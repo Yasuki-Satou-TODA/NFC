@@ -8,19 +8,26 @@
 import CoreNFC
 import Foundation
 import UIKit
+    
+enum State {
+    case standBy
+    case read
+    case write
+}
 
 final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
 
     var viewController: ViewController!
     private var message: NFCNDEFMessage?
     private var text: String = ""
+    var state: State = .standBy
 
     private lazy var session: NFCNDEFReaderSession = {
         return NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
     }()
 
     func startSession(state: State) {
-        viewController.state = state
+        self.state = state
         guard NFCNDEFReaderSession.readingAvailable else {
             Swift.print("この端末ではNFCが使えません。")
             return
@@ -37,7 +44,7 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
         } else {
             session.invalidate(errorMessage: error)
         }
-        viewController.state = .standBy
+        state = .standBy
     }
 
     func tagRemovalDetect(_ tag: NFCNDEFTag) {
@@ -112,13 +119,13 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
                 self.stopSession(error: "このNFCタグは対応していません。")
                 return
             }
-            if self.viewController.state == .write {
+            if self.state == .write {
                 if status == .readOnly {
                     self.stopSession(error: "このNFCタグには書き込めません。")
                     return
                 }
                 self.makePayload(capacity: capacity, tag: tag)
-            } else if self.viewController.state == .read {
+            } else if self.state == .read {
                 tag.readNDEF { (message, error) in
                     if error != nil || message == nil {
                         self.stopSession(error: error!.localizedDescription)

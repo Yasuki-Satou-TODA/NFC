@@ -8,19 +8,11 @@
 import CoreNFC
 import UIKit
 
-enum State {
-    case standBy
-    case read
-    case write
-}
-
 final class ViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var writeBtn: UIButton!
     @IBOutlet weak var readBtn: UIButton!
-
-    var state: State = .standBy
 
     private let nfcReader = NFCReader()
 
