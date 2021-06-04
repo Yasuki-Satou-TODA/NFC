@@ -5,7 +5,6 @@
 //  Created by Iichiro Kawashima on 2021/05/23.
 //
 
-import CoreNFC
 import UIKit
 
 final class ViewController: UIViewController {
@@ -18,7 +17,6 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        nfcReader.viewController = self
     }
 
     @IBAction func tapScreen(_ sender: Any) {

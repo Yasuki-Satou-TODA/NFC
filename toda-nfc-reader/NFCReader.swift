@@ -6,9 +6,7 @@
 //
 
 import CoreNFC
-import Foundation
-import UIKit
-    
+
 enum State {
     case standBy
     case read
@@ -17,7 +15,6 @@ enum State {
 
 final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
 
-    var viewController: ViewController!
     private var message: NFCNDEFMessage?
     private var text: String = ""
     var state: State = .standBy
@@ -89,7 +86,7 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
     // 読み取り状態になったとき
     func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
     }
-
+    
     // 読み取りエラーが起こった時呼ばれる。ユーザーがキャンセルボタンを押すか、タイムアウトしたときに呼ばれる。
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         Swift.print(error.localizedDescription)
