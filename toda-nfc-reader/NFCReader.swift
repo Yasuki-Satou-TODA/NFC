@@ -17,7 +17,7 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
 
     private var message: NFCNDEFMessage?
     private var text: String = ""
-    var state: State = .standBy
+    private var state: State = .standBy
 
     private lazy var session: NFCNDEFReaderSession = {
         return NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
@@ -99,7 +99,8 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
     func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {
         if tags.count > 1 {
             session.alertMessage = "読み込ませるNFCタグは1枚にしてください．"
-            self.tagRemovalDetect(tags.first!)
+            guard let firstTag = tags.first else { return }
+            self.tagRemovalDetect(firstTag)
             return
         }
 
@@ -125,11 +126,13 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
             } else if self.state == .read {
                 tag.readNDEF { (message, error) in
                     if error != nil || message == nil {
-                        self.stopSession(error: error!.localizedDescription)
+                        guard let localizedError = error?.localizedDescription else { return }
+                        self.stopSession(error: localizedError)
                         return
                     }
-                    if !self.updateMessage(message!) {
+                    guard let message = message, self.updateMessage(message) else {
                         self.stopSession(error: "このNFCタグは対応していません。")
+                        return
                     }
                 }
             }
