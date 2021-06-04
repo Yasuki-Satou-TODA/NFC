@@ -7,66 +7,104 @@
 
 import CoreNFC
 
-enum State {
-    case standBy
-    case read
-    case write
-}
+final class NFCReader: NSObject {
 
-final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
+    enum State {
+        case standBy
+        case read
+        case write
+    }
 
     private var message: NFCNDEFMessage?
     private var text: String = ""
     private var state: State = .standBy
 
     private lazy var session: NFCNDEFReaderSession = {
-        return NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
+        return NFCNDEFReaderSession(
+            delegate: self,
+            queue: nil,
+            invalidateAfterFirstRead: false
+        )
     }()
 
     func startSession(state: State) {
+
         self.state = state
+
         guard NFCNDEFReaderSession.readingAvailable else {
-            Swift.print("この端末ではNFCが使えません。")
+            debugPrint("この端末ではNFCが使えません。")
             return
         }
-        session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
+
+        session = NFCNDEFReaderSession(
+            delegate: self,
+            queue: nil,
+            invalidateAfterFirstRead: false
+        )
+
         session.alertMessage = "NFCタグをiPhone上部に近づけてください．"
         session.begin()
     }
 
-    func stopSession(alert: String = "", error: String = "") {
+    func stopSession(
+        alert: String = "",
+        error: String = ""
+    ) {
+
         session.alertMessage = alert
+
         if error.isEmpty {
             session.invalidate()
         } else {
             session.invalidate(errorMessage: error)
         }
+
         state = .standBy
     }
 
-    func tagRemovalDetect(_ tag: NFCNDEFTag) {
-        session.connect(to: tag) { (error: Error?) in
-            if error != nil || !tag.isAvailable {
+    func setInputNFCInfo(_ text: String?) {
+
+        guard let text = text, !text.isEmpty else { return }
+        self.text = text
+
+        startSession(state: .write)
+    }
+
+    private func tagRemovalDetect(_ tag: NFCNDEFTag) {
+
+        session.connect(to: tag) { [weak self] error in
+
+            guard let self = self else { return }
+
+            if let _ = error, !tag.isAvailable {
                 self.session.restartPolling()
                 return
             }
-            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + .milliseconds(500), execute: {
-                self.tagRemovalDetect(tag)
+
+            DispatchQueue.global().asyncAfter(
+                deadline: DispatchTime.now() + .milliseconds(500),
+                execute: {
+                    self.tagRemovalDetect(tag)
             })
         }
     }
 
-    func updateMessage(_ message: NFCNDEFMessage) -> Bool {
+    private func updateMessage(_ message: NFCNDEFMessage) -> Bool {
+
         if message.records.isEmpty { return false }
+
         var results = [String]()
         for record in message.records {
             if let type = String(data: record.type, encoding: .utf8) {
                 if type == "T" { // データ形式がテキストならば
+
                     let res = record.wellKnownTypeTextPayload()
                     if let text = res.0 {
                         results.append("text: \(text)")
                     }
+
                 } else if type == "U" { // データ形式がURLならば
+
                     let res = record.wellKnownTypeURIPayload()
                     if let url = res {
                         results.append("url: \(url)")
@@ -74,29 +112,54 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
                 }
             }
         }
+
         stopSession(alert: "[" + results.joined(separator: ", ") + "]")
         return true
     }
 
-    func setInputNFCInfo(_ text: String?) {
-        setText(text: text)
-        startSession(state: .write)
+    private func makePayload(capacity: Int, tag: NFCNDEFTag) {
+
+        if let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: text, locale: Locale(identifier: "en")),
+           let urlPayload = NFCNDEFPayload.wellKnownTypeURIPayload(string: "toda-nfc-app://") {
+
+            self.message = NFCNDEFMessage(records: [payload, urlPayload])
+
+            if let length = self.message?.length, length > capacity {
+                self.stopSession(error: "容量オーバーです。！\n容量は\(capacity)bytesです。")
+                return
+            }
+
+            guard let message = self.message else { return }
+
+            tag.writeNDEF(message) { [weak self] error in
+
+                guard let self = self else { return }
+
+                guard let writeError = error else {
+                    self.stopSession(alert: "書き込みに成功しました。")
+                    return
+                }
+                self.stopSession(error: writeError.localizedDescription)
+            }
+        }
     }
+}
+
+extension NFCReader: NFCNDEFReaderSessionDelegate {
 
     // 読み取り状態になったとき
-    func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
-    }
-    
+    func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {}
+
     // 読み取りエラーが起こった時呼ばれる。ユーザーがキャンセルボタンを押すか、タイムアウトしたときに呼ばれる。
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        Swift.print(error.localizedDescription)
+        debugPrint(error.localizedDescription)
     }
 
     // 読み取りに成功したら呼ばれる。
-    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-    }
+    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {}
 
     func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {
+
         if tags.count > 1 {
             session.alertMessage = "読み込ませるNFCタグは1枚にしてください．"
             guard let firstTag = tags.first else { return }
@@ -105,62 +168,47 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
         }
 
         guard let tag = tags.first else { return }
-        session.connect(to: tag) { (error) in
-            if error != nil {
+        session.connect(to: tag) { error in
+            if let _ = error {
                 session.restartPolling()
                 return
             }
         }
 
-        tag.queryNDEFStatus { (status, capacity, error) in
-            if status == .notSupported {
+        tag.queryNDEFStatus { [weak self] (status, capacity, _) in
+
+            guard let self = self else { return }
+
+            switch (status, self.state) {
+            case (.notSupported, _):
                 self.stopSession(error: "このNFCタグは対応していません。")
-                return
-            }
-            if self.state == .write {
-                if status == .readOnly {
-                    self.stopSession(error: "このNFCタグには書き込めません。")
-                    return
-                }
+
+            case (.readOnly, .write):
+                self.stopSession(error: "このNFCタグには書き込めません。")
+
+            case (.readOnly, _):
                 self.makePayload(capacity: capacity, tag: tag)
-            } else if self.state == .read {
-                tag.readNDEF { (message, error) in
+
+            case (_ , .read):
+                tag.readNDEF { [weak self] (message, error) in
+
+                    guard let self = self else { return }
+
                     if error != nil || message == nil {
                         guard let localizedError = error?.localizedDescription else { return }
                         self.stopSession(error: localizedError)
                         return
                     }
+
                     guard let message = message, self.updateMessage(message) else {
                         self.stopSession(error: "このNFCタグは対応していません。")
                         return
                     }
                 }
+
+            default:
+                break
             }
         }
-    }
-
-    func makePayload(capacity: Int, tag: NFCNDEFTag) {
-        if let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: text, locale: Locale(identifier: "en")) {
-
-            let urlPayload = NFCNDEFPayload.wellKnownTypeURIPayload(string: "toda-nfc-app://")!
-            self.message = NFCNDEFMessage(records: [payload, urlPayload])
-            if self.message!.length > capacity {
-                self.stopSession(error: "容量オーバーです。！\n容量は\(capacity)bytesです。")
-                return
-            }
-            tag.writeNDEF(self.message!) { (error) in
-                if error != nil {
-                    self.stopSession(error: error!.localizedDescription)
-                } else {
-                    self.stopSession(alert: "書き込みに成功しました。")
-                }
-            }
-        }
-    }
-
-    func setText(text: String?) {
-        guard let text = text else { return }
-        if text.isEmpty { return }
-        self.text = text
     }
 }
