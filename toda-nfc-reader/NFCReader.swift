@@ -128,7 +128,7 @@ final class NFCReader: NSObject, NFCNDEFReaderSessionDelegate {
                         self.stopSession(error: error!.localizedDescription)
                         return
                     }
-                    if self.updateMessage(message!) {
+                    if !self.updateMessage(message!) {
                         self.stopSession(error: "このNFCタグは対応していません。")
                     }
                 }
