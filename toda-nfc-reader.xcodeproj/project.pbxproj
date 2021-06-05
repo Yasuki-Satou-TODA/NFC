@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B5AD867266BC04D0076043B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AD866266BC04D0076043B /* MainView.swift */; };
+		5B5AD869266BCB180076043B /* LifeCycleSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AD868266BCB180076043B /* LifeCycleSwiftUIApp.swift */; };
 		5B7A22AC2659DBE00041201B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22AB2659DBE00041201B /* AppDelegate.swift */; };
-		5B7A22AE2659DBE00041201B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22AD2659DBE00041201B /* SceneDelegate.swift */; };
-		5B7A22B02659DBE00041201B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22AF2659DBE00041201B /* ViewController.swift */; };
+		5B7A22B02659DBE00041201B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22AF2659DBE00041201B /* MainViewController.swift */; };
 		5B7A22B32659DBE00041201B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A22B12659DBE00041201B /* Main.storyboard */; };
 		5B7A22B52659DBE30041201B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A22B42659DBE30041201B /* Assets.xcassets */; };
 		5B7A22B82659DBE30041201B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */; };
@@ -36,10 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B5AD866266BC04D0076043B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		5B5AD868266BCB180076043B /* LifeCycleSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleSwiftUIApp.swift; sourceTree = "<group>"; };
 		5B7A22A82659DBE00041201B /* toda-nfc-reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "toda-nfc-reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7A22AB2659DBE00041201B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5B7A22AD2659DBE00041201B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5B7A22AF2659DBE00041201B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B7A22AF2659DBE00041201B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5B7A22B22659DBE00041201B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B7A22B42659DBE30041201B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B7A22B72659DBE30041201B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,6 +81,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B5AD863266BBFBD0076043B /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				5B5AD86B266BCE110076043B /* Launch */,
+				5B5AD86A266BCE030076043B /* Main */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		5B5AD864266BC0200076043B /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				5B7A22AF2659DBE00041201B /* MainViewController.swift */,
+				5B7A22B12659DBE00041201B /* Main.storyboard */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		5B5AD865266BC0330076043B /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				5B5AD866266BC04D0076043B /* MainView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		5B5AD86A266BCE030076043B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5B5AD865266BC0330076043B /* SwiftUI */,
+				5B5AD864266BC0200076043B /* UIKit */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		5B5AD86B266BCE110076043B /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */,
+				5B7A22AB2659DBE00041201B /* AppDelegate.swift */,
+				5B5AD868266BCB180076043B /* LifeCycleSwiftUIApp.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
 		5B7A229F2659DBE00041201B = {
 			isa = PBXGroup;
 			children = (
@@ -102,14 +149,10 @@
 		5B7A22AA2659DBE00041201B /* toda-nfc-reader */ = {
 			isa = PBXGroup;
 			children = (
+				5B5AD863266BBFBD0076043B /* Screen */,
 				66AF223A266611480060DCD3 /* NFCReader.swift */,
-				6606F78A265BA9AE00B7D670 /* toda-nfc-reader.entitlements */,
-				5B7A22AB2659DBE00041201B /* AppDelegate.swift */,
-				5B7A22AD2659DBE00041201B /* SceneDelegate.swift */,
-				5B7A22AF2659DBE00041201B /* ViewController.swift */,
-				5B7A22B12659DBE00041201B /* Main.storyboard */,
 				5B7A22B42659DBE30041201B /* Assets.xcassets */,
-				5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */,
+				6606F78A265BA9AE00B7D670 /* toda-nfc-reader.entitlements */,
 				5B7A22B92659DBE30041201B /* Info.plist */,
 			);
 			path = "toda-nfc-reader";
@@ -285,10 +328,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B5AD869266BCB180076043B /* LifeCycleSwiftUIApp.swift in Sources */,
 				66AF223B266611480060DCD3 /* NFCReader.swift in Sources */,
-				5B7A22B02659DBE00041201B /* ViewController.swift in Sources */,
+				5B7A22B02659DBE00041201B /* MainViewController.swift in Sources */,
 				5B7A22AC2659DBE00041201B /* AppDelegate.swift in Sources */,
-				5B7A22AE2659DBE00041201B /* SceneDelegate.swift in Sources */,
+				5B5AD867266BC04D0076043B /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
