@@ -186,7 +186,7 @@ extension NFCReader: NFCNDEFReaderSessionDelegate {
             case (.readOnly, .write):
                 self.stopSession(error: "このNFCタグには書き込めません。")
 
-            case (.readOnly, _):
+            case (_, .write):
                 self.makePayload(capacity: capacity, tag: tag)
 
             case (_ , .read):
