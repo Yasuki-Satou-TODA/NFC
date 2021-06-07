@@ -15,6 +15,7 @@
 		5B7A22B82659DBE30041201B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */; };
 		5B7A22C32659DBE40041201B /* toda_nfc_readerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22C22659DBE40041201B /* toda_nfc_readerTests.swift */; };
 		5B7A22CE2659DBE40041201B /* toda_nfc_readerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22CD2659DBE40041201B /* toda_nfc_readerUITests.swift */; };
+		66AF223B266611480060DCD3 /* NFCReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF223A266611480060DCD3 /* NFCReader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		5B7A22C92659DBE40041201B /* toda-nfc-readerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "toda-nfc-readerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7A22CD2659DBE40041201B /* toda_nfc_readerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toda_nfc_readerUITests.swift; sourceTree = "<group>"; };
 		5B7A22CF2659DBE40041201B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6606F78A265BA9AE00B7D670 /* toda-nfc-reader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "toda-nfc-reader.entitlements"; sourceTree = "<group>"; };
+		66AF223A266611480060DCD3 /* NFCReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFCReader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,8 @@
 		5B7A22AA2659DBE00041201B /* toda-nfc-reader */ = {
 			isa = PBXGroup;
 			children = (
+				66AF223A266611480060DCD3 /* NFCReader.swift */,
+				6606F78A265BA9AE00B7D670 /* toda-nfc-reader.entitlements */,
 				5B7A22AB2659DBE00041201B /* AppDelegate.swift */,
 				5B7A22AD2659DBE00041201B /* SceneDelegate.swift */,
 				5B7A22AF2659DBE00041201B /* ViewController.swift */,
@@ -280,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66AF223B266611480060DCD3 /* NFCReader.swift in Sources */,
 				5B7A22B02659DBE00041201B /* ViewController.swift in Sources */,
 				5B7A22AC2659DBE00041201B /* AppDelegate.swift in Sources */,
 				5B7A22AE2659DBE00041201B /* SceneDelegate.swift in Sources */,
@@ -458,6 +464,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "toda-nfc-reader/toda-nfc-reader.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B46YA9GNL5;
 				INFOPLIST_FILE = "toda-nfc-reader/Info.plist";
@@ -478,6 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "toda-nfc-reader/toda-nfc-reader.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B46YA9GNL5;
 				INFOPLIST_FILE = "toda-nfc-reader/Info.plist";
