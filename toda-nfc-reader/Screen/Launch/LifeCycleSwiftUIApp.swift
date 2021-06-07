@@ -14,6 +14,7 @@ import SwiftUI
 // @main
 struct LifeCycleSwiftUIApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @available(iOS 14.0, *)
     var body: some Scene {
         WindowGroup {
             MainView()
