@@ -11,8 +11,8 @@ struct Resource {
     static let description: String = """
             アプリ説明:
             - NFCタグに書き込みたい情報を入力欄に入力し書き込みボタンを押下します。
-            - 端末をNFCタグに近づけ、タグに入力した情報の書き込みます。
-            - 書き込みが完了したら、読み取りボタンを押下しNFCタグの情報を読み取ります。
+            - 端末をNFCタグに近づけ、タグに入力した情報の書込みます。
+            - 書き込みが完了したら、読み取りボタンを押下しNFCタグの情報を読取ります。
             """
 }
 
@@ -26,7 +26,7 @@ final class MainViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextField! {
         didSet {
-            textField.placeholder = "Please input the tag information"
+            textField.placeholder = "NFCタグの情報を入力してください"
         }
     }
 
