@@ -158,9 +158,7 @@ extension NFCReader: NFCNDEFReaderSessionDelegate {
     }
 
     // 読み取りに成功したら呼ばれる。
-    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-        completionHandler?()
-    }
+    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {}
 
     func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {
 
@@ -208,6 +206,7 @@ extension NFCReader: NFCNDEFReaderSessionDelegate {
                         self.stopSession(error: "このNFCタグは対応していません。")
                         return
                     }
+                    self.completionHandler?()
                 }
 
             default:
