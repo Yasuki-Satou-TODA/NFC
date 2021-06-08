@@ -64,16 +64,16 @@ final class MainViewController: UIViewController {
     private func fetch() {
         APIClient.fetch(query: "test") { [weak self] result in
             switch result {
-            case .success:
+            case .success(let response):
 
                 DispatchQueue.main.async {
-                    self?.showAlert(.success)
+                    self?.showAlert(.success(response: response))
                 }
 
             case .failure:
 
                 DispatchQueue.main.async {
-                    self?.showAlert(.success)
+                    self?.showAlert(.failure)
                 }
             }
         }
@@ -84,15 +84,15 @@ final class MainViewController: UIViewController {
 private extension MainViewController {
 
     enum AlertType {
-        case success
+        case success(response: String)
         case failure
 
         var alert: UIAlertController {
             switch self {
-            case .success:
+            case .success(let response):
                 let alert = UIAlertController(
                     title: "成功",
-                    message: "APIリクエストが成功しました",
+                    message: response,
                     preferredStyle: .alert
                 )
                 alert.addAction(.init(title: "OK", style: .default, handler: nil))

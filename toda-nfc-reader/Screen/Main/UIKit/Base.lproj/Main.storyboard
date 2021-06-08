@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="c5H-1i-kmQ">
-                                <rect key="frame" x="57" y="248" width="300" height="400"/>
+                                <rect key="frame" x="57" y="198" width="300" height="500"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Gq-4O-HU6">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="54.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="154.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor"/>
@@ -29,14 +29,14 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhs-jv-cSo">
-                                        <rect key="frame" x="0.0" y="54.5" width="300" height="20"/>
+                                        <rect key="frame" x="0.0" y="154.5" width="300" height="20"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="8Zc-ym-t1h"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LzJ-9e-lbj">
-                                        <rect key="frame" x="0.0" y="74.5" width="300" height="75.5"/>
+                                        <rect key="frame" x="0.0" y="174.5" width="300" height="75.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NFCタグ情報" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdT-N1-Nj8">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="20.5"/>
@@ -55,14 +55,14 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoD-U3-yap">
-                                        <rect key="frame" x="0.0" y="150" width="300" height="30"/>
+                                        <rect key="frame" x="0.0" y="250" width="300" height="30"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="P6B-LH-LlF"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MEw-cA-dA7">
-                                        <rect key="frame" x="0.0" y="180" width="300" height="220"/>
+                                        <rect key="frame" x="0.0" y="280" width="300" height="220"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="221-lv-YSQ" userLabel="WriteButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -110,7 +110,7 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="7Qo-cn-b5o"/>
+                                    <constraint firstAttribute="height" constant="500" id="7Qo-cn-b5o"/>
                                     <constraint firstAttribute="width" constant="300" id="Y8G-N1-KKa"/>
                                 </constraints>
                             </stackView>
