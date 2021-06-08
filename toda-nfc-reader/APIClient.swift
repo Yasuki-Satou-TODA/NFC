@@ -9,6 +9,7 @@ import Foundation
 
 enum APIError: Error {
     case offlineError
+    case decodeError
     case noData
     case systemError
 }
@@ -37,13 +38,20 @@ struct Request {
     }
 }
 
-struct Response {
-    var statusCode: Int
+struct Response: Decodable {
+    var outputText: String
+
+    private enum CodingKeys: String, CodingKey {
+        case outputText = "output_text"
+    }
 }
 
 struct APIClient {
 
-    static func fetch(query: String, completion: @escaping (Result<Swift.Void, Error>) -> Void) {
+    static func fetch(
+        query: String,
+        completion: @escaping (Result<String, Error>) -> Void
+    ) {
 
         guard let request = Request(query: query).urlRequest else { return }
         
@@ -70,8 +78,17 @@ struct APIClient {
 
             switch response.statusCode {
             case 200..<300:
-                Logger.prettyPrint(data: data)
 
+                do {
+                    Logger.prettyPrint(data: data)
+                    let json = try JSONDecoder().decode(Response.self, from: data)
+                    completion(.success(json.outputText))
+
+                } catch {
+                    debugPrint("decodeError: \(error.localizedDescription)")
+                    completion(.failure(APIError.decodeError))
+                }
+                
             default:
                 debugPrint("statusCode: \(response.statusCode)")
                 completion(.failure(APIError.systemError))
