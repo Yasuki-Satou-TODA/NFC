@@ -38,6 +38,10 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        nfcReader.completionHandler = { [weak self] in
+            self?.fetch()
+        }
     }
 
     @IBAction func tapScreen(_ sender: Any) {
@@ -51,5 +55,62 @@ final class MainViewController: UIViewController {
 
     @IBAction func read(_ sender: Any) {
         nfcReader.startSession(state: .read)
+    }
+
+    @IBAction func didHttpButtonTapped(_ sender: Any) {
+        fetch()
+    }
+
+    private func fetch() {
+        APIClient.fetch(query: "test") { [weak self] result in
+            switch result {
+            case .success:
+
+                DispatchQueue.main.async {
+                    self?.showAlert(.success)
+                }
+
+            case .failure:
+
+                DispatchQueue.main.async {
+                    self?.showAlert(.success)
+                }
+            }
+        }
+    }
+
+}
+
+private extension MainViewController {
+
+    enum AlertType {
+        case success
+        case failure
+
+        var alert: UIAlertController {
+            switch self {
+            case .success:
+                let alert = UIAlertController(
+                    title: "成功",
+                    message: "APIリクエストが成功しました",
+                    preferredStyle: .alert
+                )
+                alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                return alert
+
+            case .failure:
+                let alert = UIAlertController(
+                    title: "エラー",
+                    message: "APIリクエストが失敗しました",
+                    preferredStyle: .alert
+                )
+                alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                return alert
+            }
+        }
+    }
+
+    func showAlert(_ type: AlertType) {
+        self.present(type.alert, animated: true)
     }
 }

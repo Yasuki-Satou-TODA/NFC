@@ -9,6 +9,8 @@ import CoreNFC
 
 final class NFCReader: NSObject {
 
+    var completionHandler: (() -> Void)?
+
     enum State {
         case standBy
         case read
@@ -156,7 +158,9 @@ extension NFCReader: NFCNDEFReaderSessionDelegate {
     }
 
     // 読み取りに成功したら呼ばれる。
-    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {}
+    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
+        completionHandler?()
+    }
 
     func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {
 
