@@ -9,6 +9,8 @@ import CoreNFC
 
 final class NFCReader: NSObject {
 
+    var completionHandler: (() -> Void)?
+
     enum State {
         case standBy
         case read
@@ -204,6 +206,7 @@ extension NFCReader: NFCNDEFReaderSessionDelegate {
                         self.stopSession(error: "このNFCタグは対応していません。")
                         return
                     }
+                    self.completionHandler?()
                 }
 
             default:

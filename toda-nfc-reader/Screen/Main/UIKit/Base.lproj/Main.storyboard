@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="c5H-1i-kmQ">
-                                <rect key="frame" x="57" y="248" width="300" height="400"/>
+                                <rect key="frame" x="57" y="198" width="300" height="500"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Gq-4O-HU6">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="134.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="154.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor"/>
@@ -29,14 +29,14 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhs-jv-cSo">
-                                        <rect key="frame" x="0.0" y="134.5" width="300" height="20"/>
+                                        <rect key="frame" x="0.0" y="154.5" width="300" height="20"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="8Zc-ym-t1h"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LzJ-9e-lbj">
-                                        <rect key="frame" x="0.0" y="154.5" width="300" height="75.5"/>
+                                        <rect key="frame" x="0.0" y="174.5" width="300" height="75.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NFCタグ情報" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdT-N1-Nj8">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="20.5"/>
@@ -55,14 +55,14 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoD-U3-yap">
-                                        <rect key="frame" x="0.0" y="230" width="300" height="30"/>
+                                        <rect key="frame" x="0.0" y="250" width="300" height="30"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="P6B-LH-LlF"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MEw-cA-dA7">
-                                        <rect key="frame" x="0.0" y="260" width="300" height="140"/>
+                                        <rect key="frame" x="0.0" y="280" width="300" height="220"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="221-lv-YSQ" userLabel="WriteButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -78,25 +78,39 @@
                                                     <action selector="write:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fhB-wJ-XIB"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGX-Ne-O3T" userLabel="ReadButton">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMV-Lh-FZ6" userLabel="ReadButton">
                                                 <rect key="frame" x="0.0" y="80" width="300" height="60"/>
                                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="BDO-Hk-kpk"/>
+                                                    <constraint firstAttribute="height" constant="60" id="CNv-5n-LYj"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="NFCタグ読取り">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="read:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Vh-tn-WyK"/>
+                                                    <action selector="read:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sxl-VF-Uil"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGX-Ne-O3T" userLabel="HTTP Request">
+                                                <rect key="frame" x="0.0" y="160" width="300" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="BDO-Hk-kpk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="HTTP Request">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didHttpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OMJ-ad-Ohe"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="7Qo-cn-b5o"/>
+                                    <constraint firstAttribute="height" constant="500" id="7Qo-cn-b5o"/>
                                     <constraint firstAttribute="width" constant="300" id="Y8G-N1-KKa"/>
                                 </constraints>
                             </stackView>
@@ -114,9 +128,9 @@
                     </view>
                     <connections>
                         <outlet property="descriptionTextView" destination="8Gq-4O-HU6" id="lEa-Hv-U8M"/>
-                        <outlet property="readBtn" destination="kGX-Ne-O3T" id="7Bb-KS-yio"/>
+                        <outlet property="readBtn" destination="SMV-Lh-FZ6" id="Mre-KO-vQb"/>
                         <outlet property="textField" destination="fbz-Dj-NK3" id="VFw-kj-6yo"/>
-                        <outlet property="writeBtn" destination="kGX-Ne-O3T" id="n54-5o-5wj"/>
+                        <outlet property="writeBtn" destination="221-lv-YSQ" id="1eK-4u-ZoA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
