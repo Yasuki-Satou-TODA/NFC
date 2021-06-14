@@ -39,8 +39,8 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nfcReader.completionHandler = { [weak self] in
-            self?.fetch()
+        nfcReader.completionHandler = { [weak self] query in
+            self?.fetch(query: query)
         }
     }
 
@@ -61,8 +61,8 @@ final class MainViewController: UIViewController {
         fetch()
     }
 
-    private func fetch() {
-        APIClient.fetch(query: "test") { [weak self] result in
+    private func fetch(query: String = "test") {
+        APIClient.fetch(query: query) { [weak self] result in
             switch result {
             case .success(let response):
 

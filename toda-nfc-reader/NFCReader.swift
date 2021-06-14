@@ -9,7 +9,7 @@ import CoreNFC
 
 final class NFCReader: NSObject {
 
-    var completionHandler: (() -> Void)?
+    var completionHandler: ((String) -> Void)?
 
     enum State {
         case standBy
@@ -206,7 +206,9 @@ extension NFCReader: NFCNDEFReaderSessionDelegate {
                         self.stopSession(error: "このNFCタグは対応していません。")
                         return
                     }
-                    self.completionHandler?()
+
+                    guard let tagTextInfomation = message.records.first(where: { String(data: $0.type, encoding: .utf8) == "T" })?.wellKnownTypeTextPayload().0 else { return }
+                    self.completionHandler?(tagTextInfomation)
                 }
 
             default:
