@@ -19,4 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         return true
     }
+
+    func application(_ application: UIApplication, continue continueUserActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+
+        guard continueUserActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = continueUserActivity.webpageURL, let _ = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            return false
+        }
+        // TODO: - Handle received URL
+        debugPrint(url)
+        return true
+    }
 }
