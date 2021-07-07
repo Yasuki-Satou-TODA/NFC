@@ -24,6 +24,12 @@ final class MainViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var employeeNumberInputTextField: UITextField! {
+        didSet {
+            employeeNumberInputTextField.placeholder = "社員番号を入力してください"
+        }
+    }
+
     @IBOutlet weak var textField: UITextField! {
         didSet {
             textField.placeholder = "NFCタグの情報を入力してください"
@@ -39,9 +45,11 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nfcReader.completionHandler = { [weak self] query in
-            self?.fetch(query: query)
+        nfcReader.completionHandler = { [weak self] nfcTag in
+            self?.fetch(nfcTag: nfcTag)
         }
+
+        employeeNumberInputTextField.delegate = self
     }
 
     @IBAction func tapScreen(_ sender: Any) {
@@ -58,59 +66,56 @@ final class MainViewController: UIViewController {
     }
 
     @IBAction func didHttpButtonTapped(_ sender: Any) {
-        fetch()
+        guard let nfcTag = textField.text else { return }
+        fetch(nfcTag: nfcTag)
     }
 
-    private func fetch(query: String = "test") {
-        APIClient.fetch(query: query) { [weak self] result in
+    private func fetch(nfcTag: String) {
+
+        guard let number = get() else { return }
+
+        APIClient.fetch(nfcTag: nfcTag, employeeNumber: number) { [weak self] result in
             switch result {
             case .success(let response):
 
                 DispatchQueue.main.async {
-                    self?.showAlert(.success(response: response))
+                    self?.showAlert(.apiSuccess(response: response))
                 }
 
             case .failure:
 
                 DispatchQueue.main.async {
-                    self?.showAlert(.failure)
+                    self?.showAlert(.apiFailure)
                 }
             }
         }
     }
+}
 
+extension MainViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if employeeNumberInputTextField === textField {
+
+            switch employeeNumberInputTextField.validate() {
+            case .valid:
+
+                guard let number = employeeNumberInputTextField.text else { return }
+                set(number)
+
+            case .invalid:
+                self.showAlert(.invalidNumber)
+            }
+        }
+    }
 }
 
 private extension MainViewController {
 
-    enum AlertType {
-        case success(response: String)
-        case failure
-
-        var alert: UIAlertController {
-            switch self {
-            case .success(let response):
-                let alert = UIAlertController(
-                    title: "成功",
-                    message: response,
-                    preferredStyle: .alert
-                )
-                alert.addAction(.init(title: "OK", style: .default, handler: nil))
-                return alert
-
-            case .failure:
-                let alert = UIAlertController(
-                    title: "エラー",
-                    message: "APIリクエストが失敗しました",
-                    preferredStyle: .alert
-                )
-                alert.addAction(.init(title: "OK", style: .default, handler: nil))
-                return alert
-            }
-        }
+    func get() -> String? {
+        UserDefaults.standard.string(forKey: "employeeNumber")
     }
 
-    func showAlert(_ type: AlertType) {
-        self.present(type.alert, animated: true)
+    func set(_ employeeNumber: String) {
+        UserDefaults.standard.setValue(employeeNumber, forKey: "employeeNumber")
     }
 }
