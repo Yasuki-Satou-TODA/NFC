@@ -30,9 +30,9 @@ final class MainViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var textField: UITextField! {
+    @IBOutlet weak var nfcTagInputTextField: UITextField! {
         didSet {
-            textField.placeholder = "NFCタグの情報を入力してください"
+            nfcTagInputTextField.placeholder = "NFCタグの情報を入力してください"
         }
     }
 
@@ -50,15 +50,16 @@ final class MainViewController: UIViewController {
         }
 
         employeeNumberInputTextField.delegate = self
+        nfcTagInputTextField.delegate = self
     }
 
     @IBAction func tapScreen(_ sender: Any) {
-        textField.resignFirstResponder()
+        nfcTagInputTextField.resignFirstResponder()
     }
 
     @IBAction func write(_ sender: Any) {
-        textField.resignFirstResponder()
-        nfcReader.setInputNFCInfo(textField.text)
+        nfcTagInputTextField.resignFirstResponder()
+        nfcReader.setInputNFCInfo(nfcTagInputTextField.text)
     }
 
     @IBAction func read(_ sender: Any) {
@@ -66,7 +67,7 @@ final class MainViewController: UIViewController {
     }
 
     @IBAction func didHttpButtonTapped(_ sender: Any) {
-        guard let nfcTag = textField.text else { return }
+        guard let nfcTag = nfcTagInputTextField.text else { return }
         fetch(nfcTag: nfcTag)
     }
 
@@ -106,6 +107,15 @@ extension MainViewController: UITextFieldDelegate {
                 self.showAlert(.invalidNumber)
             }
         }
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
     }
 }
 

@@ -150,8 +150,8 @@
                     <connections>
                         <outlet property="descriptionTextView" destination="8Gq-4O-HU6" id="lEa-Hv-U8M"/>
                         <outlet property="employeeNumberInputTextField" destination="Pki-1u-8DH" id="G4D-uN-nrx"/>
+                        <outlet property="nfcTagInputTextField" destination="fbz-Dj-NK3" id="dnR-s5-UuL"/>
                         <outlet property="readBtn" destination="SMV-Lh-FZ6" id="Mre-KO-vQb"/>
-                        <outlet property="textField" destination="fbz-Dj-NK3" id="VFw-kj-6yo"/>
                         <outlet property="writeBtn" destination="221-lv-YSQ" id="1eK-4u-ZoA"/>
                     </connections>
                 </viewController>
