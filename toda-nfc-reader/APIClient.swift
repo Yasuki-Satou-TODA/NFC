@@ -57,7 +57,9 @@ struct APIClient {
     ) {
 
         guard let request = Request(nfcTag: nfcTag, employeeNumber: employeeNumber).urlRequest else { return }
-        
+
+        Logger.printRequest(request: request)
+
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 
             if let nsError = error as? NSError,
