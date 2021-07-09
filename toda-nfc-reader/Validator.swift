@@ -53,7 +53,7 @@ enum ValidationError: ValidationErrorProtocol {
         switch self {
         case .empty: return "文字を入力してください"
         case .length(let min, let max): return "\(min)文字以上\(max)文字以下で入力してください。"
-        case .nameFormat: return "英語大文字小文字のみで入力してください。"
+        case .nameFormat: return "数字英語大文字小文字のみで入力してください。"
         }
     }
 }
@@ -84,7 +84,7 @@ struct LengthValidator: Validator {
 
 struct FormatValidator: Validator {
 
-    let regExpression = "^[a-zA-Z]+$"
+    let regExpression = "^[1-9a-zA-Z]+$"
 
     func validate(_ value: String) -> ValidationResult {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regExpression)
