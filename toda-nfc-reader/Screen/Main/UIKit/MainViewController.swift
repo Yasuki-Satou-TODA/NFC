@@ -33,6 +33,9 @@ final class MainViewController: UIViewController {
     @IBOutlet weak var employeeNumberInputTextField: UITextField! {
         didSet {
             employeeNumberInputTextField.placeholder = "社員番号を入力してください"
+
+            guard let employeeNumber = get() else { return }
+            employeeNumberInputTextField.text = "\(employeeNumber)"
         }
     }
 
