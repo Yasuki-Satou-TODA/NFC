@@ -108,10 +108,11 @@ extension MainViewController: UITextFieldDelegate {
             case .valid:
 
                 guard let number = employeeNumberInputTextField.text else { return }
+                employeeNumberLabel.text = "社員番号:" + "  \(number)"
                 set(number)
 
-            case .invalid:
-                self.showAlert(.invalidNumber)
+            case let .invalid(error):
+                self.showAlert(.invalidNumber(error))
             }
         }
     }

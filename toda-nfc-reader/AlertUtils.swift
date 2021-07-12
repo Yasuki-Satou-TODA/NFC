@@ -10,7 +10,7 @@ extension UIViewController {
     enum AlertType {
         case apiSuccess(response: String)
         case apiFailure
-        case invalidNumber
+        case invalidNumber(ValidationError)
 
         var alert: UIAlertController {
             switch self {
@@ -32,10 +32,10 @@ extension UIViewController {
                 alert.addAction(.init(title: "OK", style: .default, handler: nil))
                 return alert
 
-            case .invalidNumber:
+            case let .invalidNumber(error):
                 let alert = UIAlertController(
-                    title: "不要な文字が含まれています",
-                    message: "もう一度入力してください",
+                    title: "エラー",
+                    message: error.errorDescription,
                     preferredStyle: .alert
                 )
                 alert.addAction(.init(title: "OK", style: .default, handler: nil))

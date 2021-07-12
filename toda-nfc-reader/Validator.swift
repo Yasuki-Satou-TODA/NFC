@@ -46,14 +46,14 @@ extension CompositeValidator {
 enum ValidationError: ValidationErrorProtocol {
 
     case empty
-    case length(min: Int, max: Int)
+    case length(Int)
     case nameFormat
 
     var errorDescription: String? {
         switch self {
         case .empty: return "文字を入力してください"
-        case .length(let min, let max): return "\(min)文字以上\(max)文字以下で入力してください。"
-        case .nameFormat: return "数字英語大文字小文字のみで入力してください。"
+        case .length(let length): return "\(length)文字で入力してください。"
+        case .nameFormat: return "半角数字のみで入力してください。"
         }
     }
 }
@@ -70,21 +70,20 @@ struct EmptyValidator: Validator {
 }
 
 struct LengthValidator: Validator {
-    let min: Int
-    let max: Int
+    let length: Int
 
     func validate(_ value: String) -> ValidationResult {
-        if value.count >= min && value.count <= max {
+        if value.count == length {
             return .valid
         } else {
-            return .invalid(.length(min: min, max: max))
+            return .invalid(.length(length))
         }
     }
 }
 
 struct FormatValidator: Validator {
 
-    let regExpression = "^[1-9a-zA-Z]+$"
+    let regExpression = "^[1-9]+$"
 
     func validate(_ value: String) -> ValidationResult {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regExpression)
@@ -100,8 +99,8 @@ struct FormatValidator: Validator {
 struct EmployeeNumberValidator: CompositeValidator {
     var validators: [Validator] = [
         EmptyValidator(),
-        LengthValidator(min: 1, max: 8),
-        FormatValidator()
+        FormatValidator(),
+        LengthValidator(length: 7)
     ]
 }
 
