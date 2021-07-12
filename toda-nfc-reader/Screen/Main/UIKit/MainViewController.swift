@@ -24,6 +24,12 @@ final class MainViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var employeeNumberLabel: UILabel! {
+        didSet {
+            employeeNumberLabel.text = "社員番号:" + "  \(get() ?? "未登録")"
+        }
+    }
+
     @IBOutlet weak var employeeNumberInputTextField: UITextField! {
         didSet {
             employeeNumberInputTextField.placeholder = "社員番号を入力してください"
@@ -97,6 +103,7 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if employeeNumberInputTextField === textField {
 
+            // TODO: - 不要であれば変更する
             switch employeeNumberInputTextField.validate() {
             case .valid:
 
