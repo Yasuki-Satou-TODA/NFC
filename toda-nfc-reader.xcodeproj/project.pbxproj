@@ -20,6 +20,7 @@
 		5B7A22B82659DBE30041201B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B7A22B62659DBE30041201B /* LaunchScreen.storyboard */; };
 		5B7A22C32659DBE40041201B /* toda_nfc_readerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22C22659DBE40041201B /* toda_nfc_readerTests.swift */; };
 		5B7A22CE2659DBE40041201B /* toda_nfc_readerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7A22CD2659DBE40041201B /* toda_nfc_readerUITests.swift */; };
+		5BB7FE8026A652D300160ED3 /* UserdefaultsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7FE7F26A652D300160ED3 /* UserdefaultsUtil.swift */; };
 		66AF223B266611480060DCD3 /* NFCReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF223A266611480060DCD3 /* NFCReader.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		5B7A22C92659DBE40041201B /* toda-nfc-readerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "toda-nfc-readerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7A22CD2659DBE40041201B /* toda_nfc_readerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toda_nfc_readerUITests.swift; sourceTree = "<group>"; };
 		5B7A22CF2659DBE40041201B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BB7FE7F26A652D300160ED3 /* UserdefaultsUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserdefaultsUtil.swift; sourceTree = "<group>"; };
 		6606F78A265BA9AE00B7D670 /* toda-nfc-reader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "toda-nfc-reader.entitlements"; sourceTree = "<group>"; };
 		66AF223A266611480060DCD3 /* NFCReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFCReader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 			children = (
 				5B5AD86B266BCE110076043B /* Launch */,
 				5B5AD86A266BCE030076043B /* Main */,
+				5BB7FE7F26A652D300160ED3 /* UserdefaultsUtil.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				5B7A22B02659DBE00041201B /* MainViewController.swift in Sources */,
 				5B7A22AC2659DBE00041201B /* AppDelegate.swift in Sources */,
 				5B797A2F2695D42D00574351 /* AlertUtils.swift in Sources */,
+				5BB7FE8026A652D300160ED3 /* UserdefaultsUtil.swift in Sources */,
 				5B5AD879266F38C80076043B /* Logger.swift in Sources */,
 				5B5AD867266BC04D0076043B /* MainView.swift in Sources */,
 				5B5AD877266F36C80076043B /* APIClient.swift in Sources */,

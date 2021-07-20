@@ -22,11 +22,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, continue continueUserActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
 
-        guard continueUserActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = continueUserActivity.webpageURL, let _ = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+        guard continueUserActivity.activityType == NSUserActivityTypeBrowsingWeb,
+              let url = continueUserActivity.webpageURL, let _ = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        else {
             return false
         }
-        // TODO: - Handle received URL
-        debugPrint(url)
+
+        /// URLクエリーからvalue抽出
+        /// - Note: Locationは不要であれば削除する
+        guard let nfcTag = url.queryValue(for: "NFCTag"),
+              let location = url.queryValue(for: "Location"),
+              let employeeNumber = UserdefaultsUtil.get()
+        else {
+            return false
+        }
+
+        APIClient.fetch(nfcTag: nfcTag, employeeNumber: employeeNumber) { result in
+            // TODO: - Error handling
+            /// NotificationCenterでMain画面に通知してアラートなど
+        }
         return true
+    }
+}
+
+extension URL {
+    func queryValue(for key: String) -> String? {
+        let queryItems = URLComponents(string: absoluteString)?.queryItems
+        return queryItems?.filter { $0.name == key }.compactMap { $0.value }.first
     }
 }

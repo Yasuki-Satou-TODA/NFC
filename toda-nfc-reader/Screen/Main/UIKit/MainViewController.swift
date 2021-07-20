@@ -26,7 +26,7 @@ final class MainViewController: UIViewController {
 
     @IBOutlet weak var employeeNumberLabel: UILabel! {
         didSet {
-            employeeNumberLabel.text = "社員番号:" + "  \(get() ?? "未登録")"
+            employeeNumberLabel.text = "社員番号:" + "  \(UserdefaultsUtil.get() ?? "未登録")"
         }
     }
 
@@ -34,7 +34,7 @@ final class MainViewController: UIViewController {
         didSet {
             employeeNumberInputTextField.placeholder = "社員番号を入力してください"
 
-            guard let employeeNumber = get() else { return }
+            guard let employeeNumber = UserdefaultsUtil.get() else { return }
             employeeNumberInputTextField.text = "\(employeeNumber)"
         }
     }
@@ -82,7 +82,7 @@ final class MainViewController: UIViewController {
 
     private func fetch(nfcTag: String) {
 
-        guard let number = get() else { return }
+        guard let number = UserdefaultsUtil.get() else { return }
 
         APIClient.fetch(nfcTag: nfcTag, employeeNumber: number) { [weak self] result in
             switch result {
@@ -112,8 +112,8 @@ extension MainViewController: UITextFieldDelegate {
 
                 guard let number = employeeNumberInputTextField.text else { return }
                 employeeNumberLabel.text = "社員番号:" + "  \(number)"
-                set(number)
-
+                UserdefaultsUtil.set(number)
+            
             case let .invalid(error):
                 self.showAlert(.invalidNumber(error))
             }
@@ -127,16 +127,5 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
-    }
-}
-
-private extension MainViewController {
-
-    func get() -> String? {
-        UserDefaults.standard.string(forKey: "employeeNumber")
-    }
-
-    func set(_ employeeNumber: String) {
-        UserDefaults.standard.setValue(employeeNumber, forKey: "employeeNumber")
     }
 }
