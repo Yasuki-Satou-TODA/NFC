@@ -121,7 +121,8 @@ final class NFCReader: NSObject {
 
     private func makePayload(capacity: Int, tag: NFCNDEFTag) {
 
-        if let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: text, locale: Locale(identifier: "en")),
+//        if let payload = NFCNDEFPayload.wellKnownTypeTextPayload(string: text, locale: Locale(identifier: "en")),
+        if let payload = NFCNDEFPayload.wellKnownTypeURIPayload(string: text),
            let urlPayload = NFCNDEFPayload.wellKnownTypeURIPayload(string: "toda-nfc-app://") {
 
             self.message = NFCNDEFMessage(records: [payload, urlPayload])
@@ -207,7 +208,7 @@ extension NFCReader: NFCNDEFReaderSessionDelegate {
                         return
                     }
 
-                    guard let tagTextInfomation = message.records.first(where: { String(data: $0.type, encoding: .utf8) == "T" })?.wellKnownTypeTextPayload().0 else { return }
+                    guard let tagTextInfomation = message.records.first(where: { String(data: $0.type, encoding: .utf8) == "U" })?.wellKnownTypeTextPayload().0 else { return }
                     self.completionHandler?(tagTextInfomation)
                 }
 
