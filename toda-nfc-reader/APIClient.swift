@@ -16,14 +16,16 @@ enum APIError: Error {
 
 struct Request {
 
-    let query: String
+    let nfcTag: String
+    let employeeNumber: String
 
     var baseUrl: String {
         return "https://sw89w1f7wf.execute-api.ap-northeast-1.amazonaws.com/dev/nfctag"
     }
 
     var queryItem: [URLQueryItem] {
-        return [URLQueryItem(name: "input_text", value: query)]
+        return [URLQueryItem(name: "input_text", value: nfcTag),
+                URLQueryItem(name: "employee_number", value: employeeNumber)]
     }
 
     var urlRequest: URLRequest? {
@@ -49,12 +51,15 @@ struct Response: Decodable {
 struct APIClient {
 
     static func fetch(
-        query: String,
+        nfcTag: String,
+        employeeNumber: String,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
 
-        guard let request = Request(query: query).urlRequest else { return }
-        
+        guard let request = Request(nfcTag: nfcTag, employeeNumber: employeeNumber).urlRequest else { return }
+
+        Logger.printRequest(request: request)
+
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 
             if let nsError = error as? NSError,

@@ -24,9 +24,24 @@ final class MainViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var textField: UITextField! {
+    @IBOutlet weak var employeeNumberLabel: UILabel! {
         didSet {
-            textField.placeholder = "NFCタグの情報を入力してください"
+            employeeNumberLabel.text = "社員番号:" + "  \(UserdefaultsUtil.get() ?? "未登録")"
+        }
+    }
+
+    @IBOutlet weak var employeeNumberInputTextField: UITextField! {
+        didSet {
+            employeeNumberInputTextField.placeholder = "社員番号を入力してください"
+
+            guard let employeeNumber = UserdefaultsUtil.get() else { return }
+            employeeNumberInputTextField.text = "\(employeeNumber)"
+        }
+    }
+
+    @IBOutlet weak var nfcTagInputTextField: UITextField! {
+        didSet {
+            nfcTagInputTextField.placeholder = "NFCタグの情報を入力してください"
         }
     }
 
@@ -39,18 +54,21 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nfcReader.completionHandler = { [weak self] query in
-            self?.fetch(query: query)
+        nfcReader.completionHandler = { [weak self] nfcTag in
+            self?.fetch(nfcTag: nfcTag)
         }
+
+        employeeNumberInputTextField.delegate = self
+        nfcTagInputTextField.delegate = self
     }
 
     @IBAction func tapScreen(_ sender: Any) {
-        textField.resignFirstResponder()
+        nfcTagInputTextField.resignFirstResponder()
     }
 
     @IBAction func write(_ sender: Any) {
-        textField.resignFirstResponder()
-        nfcReader.setInputNFCInfo(textField.text)
+        nfcTagInputTextField.resignFirstResponder()
+        nfcReader.setInputNFCInfo(nfcTagInputTextField.text)
     }
 
     @IBAction func read(_ sender: Any) {
@@ -58,59 +76,56 @@ final class MainViewController: UIViewController {
     }
 
     @IBAction func didHttpButtonTapped(_ sender: Any) {
-        fetch()
+        guard let nfcTag = nfcTagInputTextField.text else { return }
+        fetch(nfcTag: nfcTag)
     }
 
-    private func fetch(query: String = "test") {
-        APIClient.fetch(query: query) { [weak self] result in
+    private func fetch(nfcTag: String) {
+
+        guard let number = UserdefaultsUtil.get() else { return }
+
+        APIClient.fetch(nfcTag: nfcTag, employeeNumber: number) { [weak self] result in
             switch result {
             case .success(let response):
 
                 DispatchQueue.main.async {
-                    self?.showAlert(.success(response: response))
+                    self?.showAlert(.apiSuccess(response: response))
                 }
 
             case .failure:
 
                 DispatchQueue.main.async {
-                    self?.showAlert(.failure)
+                    self?.showAlert(.apiFailure)
                 }
             }
         }
     }
-
 }
 
-private extension MainViewController {
+extension MainViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if employeeNumberInputTextField === textField {
 
-    enum AlertType {
-        case success(response: String)
-        case failure
+            // TODO: - 不要であれば変更する
+            switch employeeNumberInputTextField.validate() {
+            case .valid:
 
-        var alert: UIAlertController {
-            switch self {
-            case .success(let response):
-                let alert = UIAlertController(
-                    title: "成功",
-                    message: response,
-                    preferredStyle: .alert
-                )
-                alert.addAction(.init(title: "OK", style: .default, handler: nil))
-                return alert
-
-            case .failure:
-                let alert = UIAlertController(
-                    title: "エラー",
-                    message: "APIリクエストが失敗しました",
-                    preferredStyle: .alert
-                )
-                alert.addAction(.init(title: "OK", style: .default, handler: nil))
-                return alert
+                guard let number = employeeNumberInputTextField.text else { return }
+                employeeNumberLabel.text = "社員番号:" + "  \(number)"
+                UserdefaultsUtil.set(number)
+            
+            case let .invalid(error):
+                self.showAlert(.invalidNumber(error))
             }
         }
     }
 
-    func showAlert(_ type: AlertType) {
-        self.present(type.alert, animated: true)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
     }
 }
