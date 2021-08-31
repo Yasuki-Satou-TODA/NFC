@@ -38,8 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         APIClient.fetch(nfcTag: nfcTag, employeeNumber: employeeNumber) { result in
-            // TODO: - Error handling
-            /// NotificationCenterでMain画面に通知してアラートなど
+            switch result {
+            case .success(let response):
+                self.showAlert(.apiSuccess(response: response))
+            case .failure:
+                self.showAlert(.apiFailure)
+            }
         }
         return true
     }
