@@ -10,6 +10,8 @@ enum AlertType {
     case apiSuccess(response: String)
     case apiFailure
     case invalidNumber(ValidationError)
+    case noValue
+    case debug(completion: ((Swift.Void) -> Void)?)
 
     var alert: UIAlertController {
         switch self {
@@ -39,13 +41,33 @@ enum AlertType {
             )
             alert.addAction(.init(title: "OK", style: .default, handler: nil))
             return alert
-        }
-    }
-}
 
-extension UIViewController {
-    func showAlert(_ type: AlertType) {
-        self.present(type.alert, animated: true)
+        case .noValue:
+            let alert = UIAlertController(
+                title: "エラー",
+                message: "NFCTagが入力されていません",
+                preferredStyle: .alert
+            )
+            alert.addAction(.init(title: "OK", style: .default, handler: nil))
+            return alert
+
+        case let .debug(completion):
+            var textField = UITextField()
+            let alertController = UIAlertController(title: "Admin only", message: "Please enter password", preferredStyle: .alert)
+            alertController.addTextField { alertTextField in
+                textField = alertTextField
+            }
+
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                if textField.text == "toda" {
+                    if let completion = completion {
+                        completion(())
+                    }
+                }
+            })
+            return alertController
+        }
     }
 }
 

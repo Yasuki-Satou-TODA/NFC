@@ -7,26 +7,19 @@
 
 import UIKit
 
-struct Resource {
-    static let description: String = """
-            アプリ説明:
-            - NFCタグに書き込みたい情報を入力欄に入力し書き込みボタンを押下します。
-            - 端末をNFCタグに近づけ、タグに入力した情報の書込みます。
-            - 書き込みが完了したら、読み取りボタンを押下しNFCタグの情報を読取ります。
-            """
-}
 
-final class MainViewController: UIViewController {
+final class MainViewController: UIViewController, NFCTagViewConfiguration {
 
     @IBOutlet weak var descriptionTextView: UITextView! {
         didSet {
-            descriptionTextView.text = Resource.description
+            // MARK: - 文言変更の可能性あり
+            descriptionTextView.text = "NFCタグをタッチしてください"
         }
     }
 
     @IBOutlet weak var employeeNumberLabel: UILabel! {
         didSet {
-            employeeNumberLabel.text = "社員番号:" + "  \(UserdefaultsUtil.get() ?? "未登録")"
+            employeeNumberLabel.text = "社員番号:" + "  \(UserdefaultsUtil.employeeNumber ?? "未登録")"
         }
     }
 
@@ -34,7 +27,7 @@ final class MainViewController: UIViewController {
         didSet {
             employeeNumberInputTextField.placeholder = "社員番号を入力してください"
 
-            guard let employeeNumber = UserdefaultsUtil.get() else { return }
+            guard let employeeNumber = UserdefaultsUtil.employeeNumber else { return }
             employeeNumberInputTextField.text = "\(employeeNumber)"
         }
     }
@@ -44,10 +37,6 @@ final class MainViewController: UIViewController {
             nfcTagInputTextField.placeholder = "NFCタグの情報を入力してください"
         }
     }
-
-    @IBOutlet weak var writeBtn: UIButton!
-
-    @IBOutlet weak var readBtn: UIButton!
 
     private let nfcReader = NFCReader()
 
@@ -66,39 +55,16 @@ final class MainViewController: UIViewController {
         nfcTagInputTextField.resignFirstResponder()
     }
 
-    @IBAction func write(_ sender: Any) {
-        nfcTagInputTextField.resignFirstResponder()
-        nfcReader.setInputNFCInfo(nfcTagInputTextField.text)
-    }
-
-    @IBAction func read(_ sender: Any) {
-        nfcReader.startSession(state: .read)
-    }
-
-    @IBAction func didHttpButtonTapped(_ sender: Any) {
-        guard let nfcTag = nfcTagInputTextField.text else { return }
-        fetch(nfcTag: nfcTag)
-    }
-
-    private func fetch(nfcTag: String) {
-
-        guard let number = UserdefaultsUtil.get() else { return }
-
-        APIClient.fetch(nfcTag: nfcTag, employeeNumber: number) { [weak self] result in
-            switch result {
-            case .success(let response):
-
-                DispatchQueue.main.async {
-                    self?.showAlert(.apiSuccess(response: response))
-                }
-
-            case .failure:
-
-                DispatchQueue.main.async {
-                    self?.showAlert(.apiFailure)
-                }
-            }
+    @IBAction func didAdminButtonTapped(_ sender: Any) {
+        let completion: ((Swift.Void) -> Void)? = { [weak self] _ in
+            let vc = UIStoryboard(name: "AdminViewController", bundle: nil).instantiateViewController(identifier: "AdminViewController")
+            vc.modalPresentationStyle = .fullScreen
+            vc.modalTransitionStyle = .crossDissolve
+            self?.present(vc, animated: true)
         }
+
+        let alert = AlertType.debug(completion: completion).alert
+        self.present(alert, animated: true)
     }
 }
 
@@ -112,11 +78,15 @@ extension MainViewController: UITextFieldDelegate {
 
                 guard let number = employeeNumberInputTextField.text else { return }
                 employeeNumberLabel.text = "社員番号:" + "  \(number)"
-                UserdefaultsUtil.set(number)
+                UserdefaultsUtil.employeeNumber = number
             
             case let .invalid(error):
                 self.showAlert(.invalidNumber(error))
             }
+        }
+
+        if nfcTagInputTextField === textField {
+            UserdefaultsUtil.nfcTag = nfcTagInputTextField.text
         }
     }
 
@@ -129,3 +99,4 @@ extension MainViewController: UITextFieldDelegate {
         return true
     }
 }
+
