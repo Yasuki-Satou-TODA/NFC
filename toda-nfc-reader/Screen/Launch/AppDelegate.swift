@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// URLクエリーからvalue抽出
         /// - Note: Locationは不要であれば削除する
         guard let nfcTag = url.queryValue(for: "NFCTag"),
-              let location = url.queryValue(for: "Location"),
               let employeeNumber = UserdefaultsUtil.get()
         else {
             return false
