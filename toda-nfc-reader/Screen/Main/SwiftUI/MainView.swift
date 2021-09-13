@@ -15,7 +15,7 @@ struct MainView: View {
     var body: some View {
 
         VStack(alignment: .center, spacing: 30, content: {
-            Text(Resource.description)
+            Text("NFCタグをタッチしてください")
                 .frame(width: UIScreen.main.bounds.width - 40, height: 200, alignment: .center)
                 .lineLimit(nil)
 
