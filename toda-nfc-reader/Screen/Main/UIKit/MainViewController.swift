@@ -10,31 +10,33 @@ import UIKit
 
 final class MainViewController: UIViewController, NFCTagViewConfiguration {
 
-    @IBOutlet weak var descriptionTextView: UITextView! {
+    @IBOutlet weak var descriptionTextView: UILabel! {
         didSet {
             // MARK: - 文言変更の可能性あり
             descriptionTextView.text = "NFCタグをタッチしてください"
+            descriptionTextView.adjustsFontSizeToFitWidth = true
         }
     }
 
     @IBOutlet weak var employeeNumberLabel: UILabel! {
         didSet {
             employeeNumberLabel.text = "社員番号:" + "  \(UserdefaultsUtil.employeeNumber ?? "未登録")"
+            employeeNumberLabel.adjustsFontSizeToFitWidth = true
         }
     }
 
     @IBOutlet weak var employeeNumberInputTextField: UITextField! {
         didSet {
-            employeeNumberInputTextField.placeholder = "社員番号を入力してください"
-
+            
             guard let employeeNumber = UserdefaultsUtil.employeeNumber else { return }
             employeeNumberInputTextField.text = "\(employeeNumber)"
         }
     }
 
-    @IBOutlet weak var nfcTagInputTextField: UITextField! {
+    @IBOutlet weak var placeholderText: UILabel! {
         didSet {
-            nfcTagInputTextField.placeholder = "NFCタグの情報を入力してください"
+            placeholderText.text = "↑ご自身の社員番号を入力してください"
+            placeholderText.adjustsFontSizeToFitWidth = true
         }
     }
 
@@ -48,11 +50,7 @@ final class MainViewController: UIViewController, NFCTagViewConfiguration {
         }
 
         employeeNumberInputTextField.delegate = self
-        nfcTagInputTextField.delegate = self
-    }
 
-    @IBAction func tapScreen(_ sender: Any) {
-        nfcTagInputTextField.resignFirstResponder()
     }
 
     @IBAction func didAdminButtonTapped(_ sender: Any) {
@@ -83,10 +81,6 @@ extension MainViewController: UITextFieldDelegate {
             case let .invalid(error):
                 self.showAlert(.invalidNumber(error))
             }
-        }
-
-        if nfcTagInputTextField === textField {
-            UserdefaultsUtil.nfcTag = nfcTagInputTextField.text
         }
     }
 

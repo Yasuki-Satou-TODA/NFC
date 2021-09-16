@@ -18,24 +18,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wel-np-rof">
-                                <rect key="frame" x="82" y="348" width="250" height="200"/>
+                                <rect key="frame" x="82" y="298" width="250" height="300"/>
                                 <subviews>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTx-dL-gXH" userLabel="HTTP Request">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NFCタグ情報" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cG-1i-ciu">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="y1F-ZM-jTh">
+                                        <rect key="frame" x="0.0" y="35.5" width="250" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="MEH-pZ-noc"/>
+                                            <constraint firstAttribute="height" constant="40" id="U1L-GU-wZC"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="HTTP Request">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didHttpButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="M4f-2I-pIT"/>
-                                        </connections>
-                                    </button>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VsG-xn-3tm">
+                                        <rect key="frame" x="0.0" y="90.5" width="250" height="15"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="ZFE-Ug-BE6"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5E-R5-T75" userLabel="WriteButton">
-                                        <rect key="frame" x="0.0" y="75" width="250" height="50"/>
+                                        <rect key="frame" x="0.0" y="120" width="250" height="50"/>
                                         <color key="backgroundColor" systemColor="systemTealColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="baE-zJ-IpK"/>
@@ -49,7 +56,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-cg-ulV" userLabel="ReadButton">
-                                        <rect key="frame" x="0.0" y="150" width="250" height="50"/>
+                                        <rect key="frame" x="0.0" y="185" width="250" height="50"/>
                                         <color key="backgroundColor" systemColor="systemTealColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="V9E-39-ik5"/>
@@ -62,9 +69,23 @@
                                             <action selector="read:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="4Ma-U2-5dO"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTx-dL-gXH" userLabel="HTTP Request">
+                                        <rect key="frame" x="0.0" y="250" width="250" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="MEH-pZ-noc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="HTTP Request">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didHttpButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="M4f-2I-pIT"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="9sf-g7-vdr"/>
+                                    <constraint firstAttribute="height" constant="300" id="9sf-g7-vdr"/>
                                     <constraint firstAttribute="width" constant="250" id="wpV-NL-ieI"/>
                                 </constraints>
                             </stackView>
@@ -89,8 +110,17 @@
                             <constraint firstItem="CIV-eI-DIR" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="wDc-p9-R9N"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nfcTagInputTextField" destination="y1F-ZM-jTh" id="Hc3-Ga-aYi"/>
+                        <outlet property="titleLabel" destination="3cG-1i-ciu" id="0fn-KX-xcl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="DV8-0N-jgJ">
+                    <connections>
+                        <action selector="tapScreen:" destination="Y6W-OH-hqX" id="zjU-5V-8Bj"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="77" y="77"/>
         </scene>

@@ -14,8 +14,22 @@ final class AdminViewController: UIViewController, NFCTagViewConfiguration {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        nfcTagInputTextField.delegate = self
+
         nfcReader.completionHandler = { [weak self] nfcTag in
             self?.fetch(nfcTag: nfcTag)
+        }
+    }
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.text = "NFCタグ情報"
+            titleLabel.adjustsFontSizeToFitWidth = true
+        }
+    }
+
+    @IBOutlet weak var nfcTagInputTextField: UITextField! {
+        didSet {
+            nfcTagInputTextField.placeholder = "NFCタグの情報を入力してください"
         }
     }
 
@@ -46,5 +60,26 @@ final class AdminViewController: UIViewController, NFCTagViewConfiguration {
 
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+
+    @IBAction func tapScreen(_ sender: Any) {
+        nfcTagInputTextField.resignFirstResponder()
+    }
+}
+
+extension AdminViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if nfcTagInputTextField === textField {
+            UserdefaultsUtil.nfcTag = nfcTagInputTextField.text
+        }
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
     }
 }
