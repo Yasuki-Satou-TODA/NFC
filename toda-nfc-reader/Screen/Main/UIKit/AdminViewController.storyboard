@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -14,20 +14,20 @@
             <objects>
                 <viewController storyboardIdentifier="AdminViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="AdminViewController" customModule="toda_nfc_reader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wel-np-rof">
-                                <rect key="frame" x="82" y="298" width="250" height="300"/>
+                                <rect key="frame" x="82" y="218" width="250" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NFCタグ情報" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cG-1i-ciu">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="y1F-ZM-jTh">
-                                        <rect key="frame" x="0.0" y="35.5" width="250" height="40"/>
+                                        <rect key="frame" x="0.0" y="35.333333333333343" width="250" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="U1L-GU-wZC"/>
                                         </constraints>
@@ -35,7 +35,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VsG-xn-3tm">
-                                        <rect key="frame" x="0.0" y="90.5" width="250" height="15"/>
+                                        <rect key="frame" x="0.0" y="90.333333333333314" width="250" height="15"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="ZFE-Ug-BE6"/>
@@ -90,7 +90,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIV-eI-DIR">
-                                <rect key="frame" x="30" y="94" width="50" height="50"/>
+                                <rect key="frame" x="30" y="30" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="uc5-BN-wdt"/>
                                     <constraint firstAttribute="height" constant="50" id="yo1-XV-8P6"/>
@@ -107,7 +107,7 @@
                             <constraint firstItem="CIV-eI-DIR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="Cgl-EX-wDs"/>
                             <constraint firstItem="wel-np-rof" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="YjV-8e-XBC"/>
                             <constraint firstItem="wel-np-rof" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="kpb-8G-r0k"/>
-                            <constraint firstItem="CIV-eI-DIR" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="wDc-p9-R9N"/>
+                            <constraint firstItem="CIV-eI-DIR" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="wDc-p9-R9N"/>
                         </constraints>
                     </view>
                     <connections>
