@@ -170,7 +170,6 @@
 		5B7A22AA2659DBE00041201B /* toda-nfc-reader */ = {
 			isa = PBXGroup;
 			children = (
-				586E74CE26B22E9000CC6FF2 /* toda-nfc-readerRelease.entitlements */,
 				5B5AD863266BBFBD0076043B /* Screen */,
 				5B797A2E2695D42D00574351 /* AlertUtils.swift */,
 				5B797A302695D90100574351 /* Validator.swift */,
@@ -178,6 +177,7 @@
 				5B5AD876266F36C80076043B /* APIClient.swift */,
 				5B5AD878266F38C80076043B /* Logger.swift */,
 				5B7A22B42659DBE30041201B /* Assets.xcassets */,
+				586E74CE26B22E9000CC6FF2 /* toda-nfc-readerRelease.entitlements */,
 				6606F78A265BA9AE00B7D670 /* toda-nfc-reader.entitlements */,
 				5B7A22B92659DBE30041201B /* Info.plist */,
 			);
@@ -454,6 +454,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

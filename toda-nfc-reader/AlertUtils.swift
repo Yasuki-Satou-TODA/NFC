@@ -72,9 +72,19 @@ enum AlertType {
 }
 
 extension AppDelegate {
+
+    var topViewController: UIViewController? {
+        var topViewController: UIViewController? = self.window?.rootViewController
+
+        while let presentedViewController = topViewController?.presentedViewController {
+            topViewController = presentedViewController
+        }
+        return topViewController
+    }
+
     func showAlert(_ type: AlertType) {
         DispatchQueue.main.async {
-            self.window?.rootViewController?.present(type.alert, animated: true, completion: nil)
+            self.topViewController?.present(type.alert, animated: true)
         }
     }
 }
