@@ -30,16 +30,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /// URLクエリーからvalue抽出
         /// - Note: Locationは不要であれば削除する
-        guard let nfcTag = url.queryValue(for: "NFCTag"),
-              let location = url.queryValue(for: "Location"),
-              let employeeNumber = UserdefaultsUtil.get()
+        guard let nfcTag = url.queryValue(for: "tag"),
+              let employeeNumber = UserdefaultsUtil.employeeNumber
         else {
             return false
         }
 
         APIClient.fetch(nfcTag: nfcTag, employeeNumber: employeeNumber) { result in
-            // TODO: - Error handling
-            /// NotificationCenterでMain画面に通知してアラートなど
+            switch result {
+            case .success(let response):
+                self.showAlert(.apiSuccess(response: response))
+            case .failure:
+                self.showAlert(.apiFailure)
+            }
         }
         return true
     }

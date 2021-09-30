@@ -10,11 +10,13 @@ import Foundation
 
 final class UserdefaultsUtil {
 
-    static func get() -> String? {
-        UserDefaults.standard.string(forKey: "employeeNumber")
+    static var employeeNumber: String? {
+        get { UserDefaults.standard.string(forKey: "employeeNumber") }
+        set { UserDefaults.standard.setValue(newValue, forKey: "employeeNumber") }
     }
 
-    static func set(_ employeeNumber: String) {
-        UserDefaults.standard.setValue(employeeNumber, forKey: "employeeNumber")
+    static var nfcTag: String? {
+        get { UserDefaults.standard.string(forKey: "nfcTag") }
+        set { UserDefaults.standard.setValue(newValue, forKey: "nfcTag") }
     }
 }

@@ -83,7 +83,7 @@ struct LengthValidator: Validator {
 
 struct FormatValidator: Validator {
 
-    let regExpression = "^[1-9]+$"
+    let regExpression = "^[0-9]+$"
 
     func validate(_ value: String) -> ValidationResult {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regExpression)
